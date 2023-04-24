@@ -19,7 +19,7 @@ document.addEventListener('paste', async ev => {
       const f = new FormData();
       f.append('file', file);
 
-      const res = await fetch('/upload', {
+      const res = await fetch('/upload.php', {
         body: f,
         method: 'POST',
       });

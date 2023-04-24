@@ -8,14 +8,15 @@ call_user_func(function(){
         $_SESSION['valid'] = 1;
     }
 
-    # A simple routing for "/upload".
-    if ($_SERVER['REQUEST_METHOD'] === 'GET' and $_SERVER['REQUEST_URI'] === '/upload') {
+    # GET part.
+    if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         header('Content-Type: text/html');
         include(__DIR__ . '/../templates/upload.phtml');
         return;
     }
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_SERVER['REQUEST_URI'] === '/upload') {
+    # POST part.
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!isset($_FILES['file'])) {
             header('Status: 400');
             return;
