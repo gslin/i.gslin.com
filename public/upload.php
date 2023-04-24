@@ -11,12 +11,21 @@ call_user_func(function(){
     # GET part.
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         header('Content-Type: text/html');
-        include(__DIR__ . '/../templates/upload.phtml');
+        $str = file_get_contents(__DIR__ . '/../templates/upload.phtml');
+        $csrf_token = hash('sha256', session_id());
+        $str = str_replace('%CSRF_TOKEN%', $csrf_token, $str);
+        echo $str;
         return;
     }
 
     # POST part.
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $csrf_token = hash('sha256', session_id());
+        if ($_POST['csrf_token'] != $csrf_token) {
+            header('Status: 400');
+            return;
+        }
+
         if (!isset($_FILES['file'])) {
             header('Status: 400');
             return;

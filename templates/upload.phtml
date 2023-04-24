@@ -7,6 +7,7 @@
 </head>
 <body>
 <h1>Minimal image hosting</h1>
+<p>Just copy &amp; paste image to here.</p>
 <script>
 <!--
 document.addEventListener('paste', async ev => {
@@ -18,6 +19,7 @@ document.addEventListener('paste', async ev => {
 
       const f = new FormData();
       f.append('file', file);
+      f.append('csrf_token', '%CSRF_TOKEN%');
 
       const res = await fetch('/upload.php', {
         body: f,
