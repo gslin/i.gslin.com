@@ -5,6 +5,7 @@ call_user_func(function(){
     session_start();
     if ($_SESSION['valid'] !== 1) {
         session_regenerate_id();
+        $_SESSION['valid'] = 1;
     }
 
     # A simple routing for "/upload".
