@@ -15,5 +15,15 @@ call_user_func(function(){
         return;
     }
 
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_SERVER['REQUEST_URI'] === '/upload') {
+        if (!isset($_FILES['file'])) {
+            header('Status: 400');
+            return;
+        }
+        $file = $_FILES['file'];
+
+        return;
+    }
+
     header('Status: 404');
 });
