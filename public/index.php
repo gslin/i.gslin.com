@@ -11,7 +11,7 @@ call_user_func(function(){
     # A simple routing for "/upload".
     if ($_SERVER['REQUEST_METHOD'] === 'GET' and $_SERVER['REQUEST_URI'] === '/upload') {
         header('Content-Type: text/html');
-        include(__DIR__ . '/templates/upload.phtml');
+        include(__DIR__ . '/../templates/upload.phtml');
         return;
     }
 });
