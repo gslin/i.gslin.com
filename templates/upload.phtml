@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Minimal image hosting</title>
+</head>
+<body>
+<h1>Minimal image hosting</h1>
+<script>
+<!--
+document.addEventListener('paste', async ev => {
+  const items = (ev.clipboardData || ev.originalEvent.clipboardData).items;
+  for (const item of items) {
+    if (item.type.indexOf('image') !== -1) {
+      const file = item.getAsFile();
+      console.log(file);
+
+      const f = new FormData();
+      f.append('file', file);
+
+      const res = await fetch('/upload', {
+        body: f,
+        method: 'POST',
+      });
+
+      const data = await res.json();
+      document.location = data.images.png;
+    }
+  }
+});
+//-->
+</script>
+</body>
+</html>
