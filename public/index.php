@@ -22,6 +22,18 @@ call_user_func(function(){
         }
         $file = $_FILES['file'];
 
+        switch ($file['type']) {
+        case 'image/bmp':
+            $img = imagecreatefrombmp($file['tmp_name']);
+            break;
+        case 'image/png':
+            $img = imagecreatefrompng($file['tmp_name']);
+            break;
+        default:
+            header('Status: 400');
+            return;
+        }
+
         return;
     }
 
