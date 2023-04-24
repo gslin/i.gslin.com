@@ -34,6 +34,21 @@ call_user_func(function(){
             return;
         }
 
+        $outfilename = sprintf('s/%d-%s', time(), bin2hex(random_bytes(4)));
+        $outfilename_jpeg = sprintf('%s.jpeg', $outfilename);
+        $outfilename_png = sprintf('%s.png', $outfilename);
+        $outfilename_webp = sprintf('%s.webp', $outfilename);
+
+        $data = [
+            'images' => [
+                'jpeg' => $outfilename_jpeg,
+                'png' => $outfilename_png,
+                'webp' => $outfilename_webp,
+            ],
+        ];
+
+        header('Content-Type: application/json');
+        echo json_encode($data);
         return;
     }
 
