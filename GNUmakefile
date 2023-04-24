@@ -1,4 +1,7 @@
 #
+-include GNUmakefile.local
+
+#
 deploy:
 	rsync -CFavz \
 		--delete-after \
