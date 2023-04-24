@@ -38,6 +38,9 @@ call_user_func(function(){
         $outfilename_jpeg = sprintf('%s.jpeg', $outfilename);
         $outfilename_png = sprintf('%s.png', $outfilename);
         $outfilename_webp = sprintf('%s.webp', $outfilename);
+        imagejpeg($img, $outfilename_jpeg, $quality = 75);
+        imagepng($img, $outfilename_png, $quality = 9);
+        imagewebp($img, $outfilename_webp, $quality = 100);
 
         $data = [
             'images' => [
