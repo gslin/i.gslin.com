@@ -56,5 +56,5 @@ call_user_func(function(){
         return;
     }
 
-    header('Status: 404');
+    header('Status: 405');
 });
