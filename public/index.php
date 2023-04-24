@@ -14,4 +14,6 @@ call_user_func(function(){
         include(__DIR__ . '/../templates/upload.phtml');
         return;
     }
+
+    header('Status: 404');
 });
