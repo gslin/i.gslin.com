@@ -3,7 +3,7 @@
 call_user_func(function(){
     # Prevent from session fixation.
     session_start();
-    if ($_SESSION['valid'] !== 1) {
+    if (!isset($_SESSION['valid'])) {
         session_regenerate_id();
         $_SESSION['valid'] = 1;
     }
