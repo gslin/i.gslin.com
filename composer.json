@@ -1,7 +1,8 @@
 {
     "require": {
         "sentry/sdk": "^3.3",
-        "vlucas/phpdotenv": "^5.5"
+        "vlucas/phpdotenv": "^5.5",
+        "guzzlehttp/guzzle": "^7.5"
     },
     "config": {
         "allow-plugins": {
