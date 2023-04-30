@@ -42,7 +42,7 @@ call_user_func(function(){
             return;
         }
 
-        if ($_POST('mode') === 'file') {
+        if ($_POST['mode'] === 'file') {
             $file = $_FILES['file'];
 
             switch ($file['type']) {
