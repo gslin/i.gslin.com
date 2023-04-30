@@ -7,19 +7,22 @@
 </head>
 <body>
 <h1>Minimal image hosting</h1>
+<h2>Upload via URL</h2>
 <form action="/upload.php" enctype="multipart/form-data" method="post">
   <input type="hidden" name="csrf_token" value="%CSRF_TOKEN%"/>
   <input type="hidden" name="mode" value="url"/>
   <input type="text" name="url" />
   <input type="submit"/>
 </form>
+<h2>Upload via File</h2>
 <form action="/upload.php" enctype="multipart/form-data" method="post">
   <input type="hidden" name="csrf_token" value="%CSRF_TOKEN%"/>
   <input type="hidden" name="mode" value="file"/>
   <input type="file" name="file" />
   <input type="submit"/>
 </form>
-<p>Select file to upload, or just copy &amp; paste image to here.</p>
+<h2>Upload via copy &amp; paste</h2>
+<p>You can also just copy &amp; paste image to here.</p>
 <script>
 <!--
 document.addEventListener('paste', async ev => {
