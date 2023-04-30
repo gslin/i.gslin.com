@@ -3,6 +3,13 @@
 require __DIR__ . '/../vendor/autoload.php';
 
 call_user_func(function(){
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+    $dotenv->load();
+
+    $sentry_dsn = $_ENV['SENTRY_DSN'];
+
+    Sentry\init(['dsn' => $sentry_dsn]);
+
     # Prevent from session fixation.
     session_start();
     if (!isset($_SESSION['valid'])) {
