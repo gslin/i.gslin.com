@@ -55,6 +55,9 @@ call_user_func(function(){
             return;
         }
 
+        # Converts a palette based image to true color
+        imagepalettetotruecolor($img);
+
         $outfilename = sprintf('s/%d-%s', time(), bin2hex(random_bytes(4)));
         $outfilename_jpeg = sprintf('%s.jpeg', $outfilename);
         $outfilename_png = sprintf('%s.png', $outfilename);
