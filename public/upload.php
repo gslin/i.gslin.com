@@ -36,23 +36,36 @@ call_user_func(function(){
             return;
         }
 
-        if (!isset($_FILES['file'])) {
+        if (!isset($_POST['mode'])) {
             header('Status: 400');
-            echo 'miss file';
+            echo 'missing mode field';
             return;
         }
-        $file = $_FILES['file'];
 
-        switch ($file['type']) {
-        case 'image/bmp':
-            $img = imagecreatefrombmp($file['tmp_name']);
-            break;
-        case 'image/png':
-            $img = imagecreatefrompng($file['tmp_name']);
-            break;
-        default:
-            header('Status: 400');
-            return;
+        if ($_POST('mode') === 'file') {
+            $file = $_FILES['file'];
+
+            switch ($file['type']) {
+            case 'image/bmp':
+                $img = imagecreatefrombmp($file['tmp_name']);
+                break;
+            case 'image/png':
+                $img = imagecreatefrompng($file['tmp_name']);
+                break;
+            default:
+                header('Status: 400');
+                return;
+            }
+        }
+
+        if ($_POST['mode'] === 'url') {
+            $url = $_POST['url'];
+
+            $client = GuzzleHttp\Client();
+            $res = $client->request('GET', $url);
+            $body = $res->getBody();
+
+            $img = imagecreatefromstring($body);
         }
 
         $outfilename = sprintf('s/%d-%s', time(), bin2hex(random_bytes(4)));

@@ -9,6 +9,12 @@
 <h1>Minimal image hosting</h1>
 <form action="/upload.php" enctype="multipart/form-data" method="post">
   <input type="hidden" name="csrf_token" value="%CSRF_TOKEN%"/>
+  <input type="hidden" name="mode" value="url"/>
+  <input type="text" name="url" />
+  <input type="submit"/>
+</form>
+<form action="/upload.php" enctype="multipart/form-data" method="post">
+  <input type="hidden" name="csrf_token" value="%CSRF_TOKEN%"/>
   <input type="hidden" name="mode" value="file"/>
   <input type="file" name="file" />
   <input type="submit"/>
