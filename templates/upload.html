@@ -7,7 +7,12 @@
 </head>
 <body>
 <h1>Minimal image hosting</h1>
-<p>Just copy &amp; paste image to here.</p>
+<form method="/upload.php">
+  <input type="csrf_token" value="%CSRF_TOKEN%"/>
+  <input type="file"/>
+  <input type="submit"/>
+</form>
+<p>Select file to upload, or just copy &amp; paste image to here.</p>
 <script>
 <!--
 document.addEventListener('paste', async ev => {
