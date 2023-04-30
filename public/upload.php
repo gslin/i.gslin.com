@@ -1,5 +1,7 @@
 <?php
 
+require __DIR__ . '/../vendor/autoload.php';
+
 call_user_func(function(){
     # Prevent from session fixation.
     session_start();
