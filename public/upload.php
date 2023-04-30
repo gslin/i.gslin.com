@@ -68,4 +68,5 @@ call_user_func(function(){
     }
 
     header('Status: 405');
+    echo 'method not allowed';
 });
