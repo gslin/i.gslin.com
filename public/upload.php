@@ -11,7 +11,7 @@ call_user_func(function(){
     # GET part.
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         header('Content-Type: text/html');
-        $str = file_get_contents(__DIR__ . '/../templates/upload.phtml');
+        $str = file_get_contents(__DIR__ . '/../templates/upload.html');
         $csrf_token = hash('sha256', session_id());
         $str = str_replace('%CSRF_TOKEN%', $csrf_token, $str);
         echo $str;
