@@ -17,6 +17,10 @@
 <script>
 <!--
 document.addEventListener('paste', async ev => {
+  if ('input' === document.activeElement.tagName.toLowerCase()) {
+    return;
+  }
+
   const items = (ev.clipboardData || ev.originalEvent.clipboardData).items;
   for (const item of items) {
     if (item.type.indexOf('image') !== -1) {
