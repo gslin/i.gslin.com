@@ -7,7 +7,7 @@
 </head>
 <body>
 <h1>Minimal image hosting</h1>
-<form action="/upload.php" method="post">
+<form action="/upload.php" enctype="multipart/form-data" method="post">
   <input type="hidden" name="csrf_token" value="%CSRF_TOKEN%"/>
   <input type="file" name="file" />
   <input type="submit"/>
