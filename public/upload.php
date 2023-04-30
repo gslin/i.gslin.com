@@ -23,11 +23,13 @@ call_user_func(function(){
         $csrf_token = hash('sha256', session_id());
         if ($_POST['csrf_token'] != $csrf_token) {
             header('Status: 400');
+            echo 'csrf_token invalid';
             return;
         }
 
         if (!isset($_FILES['file'])) {
             header('Status: 400');
+            echo 'miss file';
             return;
         }
         $file = $_FILES['file'];
