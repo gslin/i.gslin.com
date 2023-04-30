@@ -61,7 +61,7 @@ call_user_func(function(){
         if ($_POST['mode'] === 'url') {
             $url = $_POST['url'];
 
-            $client = GuzzleHttp\Client();
+            $client = new GuzzleHttp\Client();
             $res = $client->request('GET', $url);
             $body = $res->getBody();
 
