@@ -80,16 +80,8 @@ call_user_func(function(){
         imagepalettetotruecolor($img);
         imagewebp($img, $outfilename_webp, $quality = 100);
 
-        $data = [
-            'images' => [
-                'jpeg' => $outfilename_jpeg,
-                'png' => $outfilename_png,
-                'webp' => $outfilename_webp,
-            ],
-        ];
-
-        header('Content-Type: application/json');
-        echo json_encode($data);
+        header('Status: 302');
+        header("Location: /${outfilename_png}");
         return;
     }
 

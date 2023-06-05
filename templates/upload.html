@@ -46,8 +46,7 @@ document.addEventListener('paste', async ev => {
         method: 'POST',
       });
 
-      const data = await res.json();
-      document.location = data.images.png;
+      document.location = res.url;
     }
   }
 });
