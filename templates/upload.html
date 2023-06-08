@@ -34,7 +34,6 @@ document.addEventListener('paste', async ev => {
   for (const item of items) {
     if (item.type.indexOf('image') !== -1) {
       const file = item.getAsFile();
-      console.debug(file);
 
       const f = new FormData();
       f.append('csrf_token', '%CSRF_TOKEN%');
