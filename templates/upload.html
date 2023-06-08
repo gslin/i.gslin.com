@@ -7,13 +7,6 @@
 </head>
 <body>
 <h1>Minimal image hosting</h1>
-<h2>Upload via URL</h2>
-<form action="/upload.php" enctype="multipart/form-data" method="post">
-  <input type="hidden" name="csrf_token" value="%CSRF_TOKEN%"/>
-  <input type="hidden" name="mode" value="url"/>
-  <input type="text" name="url" />
-  <input type="submit"/>
-</form>
 <h2>Upload via File</h2>
 <form action="/upload.php" enctype="multipart/form-data" method="post">
   <input type="hidden" name="csrf_token" value="%CSRF_TOKEN%"/>
@@ -22,7 +15,7 @@
   <input type="submit"/>
 </form>
 <h2>Upload via copy &amp; paste</h2>
-<p>You can also just copy &amp; paste image to here.</p>
+<p>You can also just copy &amp; paste image (or image url) to here.</p>
 <script>
 <!--
 document.addEventListener('paste', async ev => {
@@ -30,15 +23,29 @@ document.addEventListener('paste', async ev => {
     return;
   }
 
-  const items = (ev.clipboardData || ev.originalEvent.clipboardData).items;
+  const cd = (ev.clipboardData || ev.originalEvent.clipboardData);
+  const items = cd.items;
   for (const item of items) {
-    if (item.type.indexOf('image') !== -1) {
+    const f = new FormData();
+    f.append('csrf_token', '%CSRF_TOKEN%');
+
+    if (item.type.startsWith('image/')) {
       const file = item.getAsFile();
 
-      const f = new FormData();
-      f.append('csrf_token', '%CSRF_TOKEN%');
       f.append('file', file);
       f.append('mode', 'file');
+
+      const res = await fetch('/upload.php', {
+        body: f,
+        method: 'POST',
+      });
+
+      document.location = res.url;
+    } else if (item.type === 'text/plain') {
+      const url = cd.getData('text');
+
+      f.append('mode', 'url');
+      f.append('url', url);
 
       const res = await fetch('/upload.php', {
         body: f,
