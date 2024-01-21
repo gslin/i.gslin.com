@@ -16,9 +16,15 @@
 </form>
 <h2>Upload via copy &amp; paste</h2>
 <p>You can also just copy &amp; paste image (or image url) to here.</p>
+<div id="message"></div>
 <script>
 <!--
 document.addEventListener('paste', async ev => {
+  const m = document.getElementById('message');
+  const el = document.createElement('p');
+  el.innerHTML = 'Received a paste event.';
+  m.appendChild(el);
+
   if ('input' === document.activeElement.tagName.toLowerCase()) {
     return;
   }
