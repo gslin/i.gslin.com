@@ -38,26 +38,18 @@ document.addEventListener('paste', async ev => {
 
       f.append('file', file);
       f.append('mode', 'file');
-
-      const res = await fetch('/upload.php', {
-        body: f,
-        method: 'POST',
-      });
-
-      document.location = res.url;
     } else if (item.type === 'text/plain') {
       const url = cd.getData('text');
 
       f.append('mode', 'url');
       f.append('url', url);
-
-      const res = await fetch('/upload.php', {
-        body: f,
-        method: 'POST',
-      });
-
-      document.location = res.url;
     }
+    const res = await fetch('/upload.php', {
+      body: f,
+      method: 'POST',
+    });
+
+    document.location = res.url;
   }
 });
 //-->
