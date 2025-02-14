@@ -43,6 +43,9 @@ document.addEventListener('paste', async ev => {
 
       f.append('mode', 'url');
       f.append('url', url);
+    } else {
+      m.innerHTML += '<p>item.type not supported.</p>';
+      return;
     }
     const res = await fetch('/upload.php', {
       body: f,
