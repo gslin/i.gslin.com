@@ -55,7 +55,7 @@ document.addEventListener('paste', async ev => {
     });
 
     if (res.status !== 200) {
-      m.innerHTML += '<p>Failed to upload.</p>';
+      m.innerHTML += `<p>Failed to upload. (status is ${res.status})</p>`;
       return;
     }
 
