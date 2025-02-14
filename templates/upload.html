@@ -54,6 +54,11 @@ document.addEventListener('paste', async ev => {
       method: 'POST',
     });
 
+    if (res.status !== 200) {
+      m.innerHTML += '<p>Failed to upload.</p>';
+      return;
+    }
+
     document.location = res.url;
   }
 });
