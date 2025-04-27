@@ -65,6 +65,12 @@ call_user_func(function(){
             $res = $client->request('GET', $url);
             $body = $res->getBody();
 
+            // quit if error
+            if ($res->getStatusCode() !== 200) {
+                header('Status: 400');
+                return;
+            }
+
             $img = imagecreatefromstring($body);
         }
 
