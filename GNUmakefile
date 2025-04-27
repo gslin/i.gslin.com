@@ -2,11 +2,11 @@
 -include GNUmakefile.local
 
 #
-deploy:
+deploy::
 	rsync -CFavz \
 		--delete-after \
 		./ \
 		${DEPLOY_USER}@${DEPLOY_HOST}:/srv/i.gslin.com/
 
-test:
+test::
 	php -l public/upload.php
