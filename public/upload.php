@@ -2,7 +2,7 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-call_user_func(function(){
+call_user_func(function () {
     $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
     $dotenv->load();
 
@@ -46,18 +46,18 @@ call_user_func(function(){
             $file = $_FILES['file'];
 
             switch ($file['type']) {
-            case 'image/bmp':
-                $img = imagecreatefrombmp($file['tmp_name']);
-                break;
-            case 'image/png':
-                $img = imagecreatefrompng($file['tmp_name']);
-                break;
-            case 'image/svg+xml':
-                header('Status: 403');
-                return;
-            default:
-                header('Status: 400');
-                return;
+                case 'image/bmp':
+                    $img = imagecreatefrombmp($file['tmp_name']);
+                    break;
+                case 'image/png':
+                    $img = imagecreatefrompng($file['tmp_name']);
+                    break;
+                case 'image/svg+xml':
+                    header('Status: 403');
+                    return;
+                default:
+                    header('Status: 400');
+                    return;
             }
         }
 
