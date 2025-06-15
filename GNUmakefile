@@ -1,5 +1,5 @@
 #
-.DEFAULT_GOAL:=	deploy
+.DEFAULT_GOAL:=	lint
 .PHONY:=	deploy lint test
 
 #
