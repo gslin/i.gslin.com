@@ -52,6 +52,9 @@ call_user_func(function(){
             case 'image/png':
                 $img = imagecreatefrompng($file['tmp_name']);
                 break;
+            case 'image/svg+xml':
+                header('Status: 403');
+                return;
             default:
                 header('Status: 400');
                 return;
