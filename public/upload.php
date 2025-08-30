@@ -41,8 +41,9 @@ call_user_func(function () {
             echo 'missing mode field';
             return;
         }
+        $mode = $_POST['mode'];
 
-        if ($_POST['mode'] === 'file') {
+        if ($mode === 'file') {
             $file = $_FILES['file'];
 
             switch ($file['type']) {
@@ -67,7 +68,7 @@ call_user_func(function () {
             }
         }
 
-        if ($_POST['mode'] === 'url') {
+        if ($mode === 'url') {
             $url = $_POST['url'];
 
             $client = new GuzzleHttp\Client();
