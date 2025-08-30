@@ -55,6 +55,10 @@ call_user_func(function () {
                     $imgtype = 'image/gif';
                     $img = imagecreatefromgif($file['tmp_name']);
                     break;
+                case 'image/jpeg':
+                    $imgtype = 'image/jpeg';
+                    $img = imagecreatefromjpeg($file['tmp_name']);
+                    break;
                 case 'image/png':
                     $imgtype = 'image/png';
                     $img = imagecreatefrompng($file['tmp_name']);
@@ -91,6 +95,7 @@ call_user_func(function () {
             switch ($content_type) {
                 case 'image/bmp':
                 case 'image/gif':
+                case 'image/jpeg':
                 case 'image/png':
                 case 'image/webp':
                     $imgtype = $content_type;
@@ -106,6 +111,7 @@ call_user_func(function () {
 
         switch ($imgtype) {
             case 'image/bmp':
+            case 'image/jpeg':
             case 'image/png':
             case 'image/webp':
                 $outfilename_jpeg = sprintf('%s.jpeg', $outfilename);
