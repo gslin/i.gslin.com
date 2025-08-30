@@ -87,7 +87,7 @@ call_user_func(function () {
                 case 'image/bmp':
                 case 'image/gif':
                 case 'image/png':
-                    $imgtype = 'image/bmp';
+                    $imgtype = $content_type;
                     $img = imagecreatefromstring($body);
                     break;
                 default:
