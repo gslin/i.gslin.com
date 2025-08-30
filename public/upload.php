@@ -47,9 +47,15 @@ call_user_func(function () {
 
             switch ($file['type']) {
                 case 'image/bmp':
+                    $imgtype = 'image/bmp';
                     $img = imagecreatefrombmp($file['tmp_name']);
                     break;
+                case 'image/gif':
+                    $imgtype = 'image/gif';
+                    $img = imagecreatefromgif($file['tmp_name']);
+                    break;
                 case 'image/png':
+                    $imgtype = 'image/png';
                     $img = imagecreatefrompng($file['tmp_name']);
                     break;
                 case 'image/svg+xml':
