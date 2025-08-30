@@ -119,7 +119,12 @@ call_user_func(function () {
                 return;
             case 'image/gif':
                 $outfilename_gif = sprintf('%s.gif', $outfilename);
-                imagegif($img, $outfilename_gif);
+
+                if ($mode === 'url') {
+                    file_put_contents($outfilename_gif, $body);
+                } else {
+                    imagegif($img, $outfilename_gif);
+                }
 
                 header('Status: 302');
                 header("Location: /${outfilename_gif}");
