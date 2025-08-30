@@ -97,20 +97,37 @@ call_user_func(function () {
         }
 
         $outfilename = sprintf('s/%d-%s', time(), bin2hex(random_bytes(4)));
-        $outfilename_jpeg = sprintf('%s.jpeg', $outfilename);
-        $outfilename_png = sprintf('%s.png', $outfilename);
-        $outfilename_webp = sprintf('%s.webp', $outfilename);
 
-        imagejpeg($img, $outfilename_jpeg, $quality = 75);
-        imagepng($img, $outfilename_png, $quality = 9);
+        switch ($imgtype) {
+            case 'image/bmp':
+            case 'image/png':
+                $outfilename_jpeg = sprintf('%s.jpeg', $outfilename);
+                $outfilename_png = sprintf('%s.png', $outfilename);
+                $outfilename_webp = sprintf('%s.webp', $outfilename);
 
-        # convert before webp output:
-        imagepalettetotruecolor($img);
-        imagewebp($img, $outfilename_webp, $quality = 100);
+                imagejpeg($img, $outfilename_jpeg, $quality = 75);
+                imagepng($img, $outfilename_png, $quality = 9);
 
-        header('Status: 302');
-        header("Location: /${outfilename_png}");
-        return;
+                # convert before webp output:
+                imagepalettetotruecolor($img);
+                imagewebp($img, $outfilename_webp, $quality = 100);
+
+                header('Status: 302');
+                header("Location: /${outfilename_png}");
+
+                return;
+            case 'image/gif':
+                $outfilename_gif = sprintf('%s.gif', $outfilename);
+                imagegif($img, $outfilename_gif);
+
+                header('Status: 302');
+                header("Location: /${outfilename_gif}");
+
+                return;
+            default:
+                header('Status: 400');
+                return;
+        }
     }
 
     header('Status: 405');
