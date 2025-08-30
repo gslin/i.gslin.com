@@ -59,6 +59,10 @@ call_user_func(function () {
                     $imgtype = 'image/png';
                     $img = imagecreatefrompng($file['tmp_name']);
                     break;
+                case 'image/webp':
+                    $imgtype = 'image/webp';
+                    $img = imagecreatefromwebp($file['tmp_name']);
+                    break;
                 case 'image/svg+xml':
                     header('Status: 403');
                     return;
@@ -88,6 +92,7 @@ call_user_func(function () {
                 case 'image/bmp':
                 case 'image/gif':
                 case 'image/png':
+                case 'image/webp':
                     $imgtype = $content_type;
                     $img = imagecreatefromstring($body);
                     break;
@@ -102,6 +107,7 @@ call_user_func(function () {
         switch ($imgtype) {
             case 'image/bmp':
             case 'image/png':
+            case 'image/webp':
                 $outfilename_jpeg = sprintf('%s.jpeg', $outfilename);
                 $outfilename_png = sprintf('%s.png', $outfilename);
                 $outfilename_webp = sprintf('%s.webp', $outfilename);
