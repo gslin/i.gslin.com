@@ -80,7 +80,20 @@ call_user_func(function () {
                 return;
             }
 
-            $img = imagecreatefromstring($body);
+            $content_type = $res->getHeader('Content-Type')[0];
+            $content_type = explode(';', $content_type)[0];
+
+            switch ($content_type) {
+                case 'image/bmp':
+                case 'image/gif':
+                case 'image/png':
+                    $imgtype = 'image/bmp';
+                    $img = imagecreatefromstring($body);
+                    break;
+                default:
+                    header('Status: 400');
+                    return;
+            }
         }
 
         $outfilename = sprintf('s/%d-%s', time(), bin2hex(random_bytes(4)));
